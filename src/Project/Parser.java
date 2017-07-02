@@ -15,6 +15,9 @@ public class Parser {
 
 	private List<Movie> movies;
 	private List<User> users;
+	private List<Actor> actors;
+	private List<Country> countries;
+	private List<Genre> genries;
 
 	public Parser() {
 		this.movies = new ArrayList<Movie>();
@@ -53,7 +56,7 @@ public class Parser {
 		this.appendMovie(new Movie(title, rated, genre, director, actors, countries, rating, boxOffice));
 	}
 
-  public void parseFileMovie(FileReader file) {
+  public void parseFileMovie(FileReader file) throws Exception {
     JSONParser parser = new JSONParser();
     try {
       JSONObject mainObj = (JSONObject) parser.parse(file);
@@ -72,6 +75,7 @@ public class Parser {
 
   public void testMovies() {
 	Movie movie;
+	System.out.println("Filmes\n");
 	for(int i = 0; i < movies.size(); i++) {
 		movie = movies.get(i);
 		System.out.println("Titulo: " + movie.getTitle());
@@ -80,6 +84,7 @@ public class Parser {
 		for(int j = 0; j < movie.getActors().length; j++) {
 			System.out.println(" - " + (movie.getActors())[j]);
 		}
+		System.out.println("\n");
 	}
   }
 
@@ -130,7 +135,7 @@ public class Parser {
 	  this.appendUser(new User(name, age, countries, actors, genres, style));
   }
 
-  public void parseFileUser(FileReader file) {
+  public void parseFileUser(FileReader file) throws Exception {
 	JSONParser parser = new JSONParser();
 	try {
 	  JSONObject mainObj = (JSONObject) parser.parse(file);
@@ -149,6 +154,7 @@ public class Parser {
 
   public void testUsers() {
 	User user;
+	System.out.println("Usuarios:\n");
 	for(int i = 0; i < users.size(); i++) {
 		user = users.get(i);
 		System.out.println("The user "+user.getName()+", aged "+user.getAge()+" years, likes the following:");
@@ -164,6 +170,21 @@ public class Parser {
 		for(int j = 0; j < user.getGenres().size(); j++) {
 			System.out.println(" - "+user.getGenres().get(j).getName() + ". Pref: "+user.getGenres().get(j).getPreference());
 		}
+		System.out.println("\n");
+	}
+	Advisor ad = new Advisor(users);
+	ad.checkActor();
+	ad.checkCountry();
+	ad.checkGenre();
+	for(int i = 0; i < ad.getCountries().size(); i++){
+		System.out.println(" - "+ad.getCountries().get(i).getName()+". Pref: "+ad.getCountries().get(i).getPreference());
+	}
+	for(int i = 0; i < ad.getGenres().size(); i++){
+		System.out.println(" - "+ad.getGenres().get(i).getName()+". Pref: "+ad.getGenres().get(i).getPreference());
+	}
+	for(int i = 0; i < ad.getActors().size(); i++){
+		System.out.println(" - "+ad.getActors().get(i).getName()+". Pref: "+ad.getActors().get(i).getPreference());
 	}
   }
+  
 }

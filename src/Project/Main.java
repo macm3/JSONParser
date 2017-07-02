@@ -5,11 +5,11 @@ import java.io.FileReader;
 
 public class Main {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
 	Parser parser = new Parser();
 	try {
-		parser.parseFileMovie(new FileReader("/Users/marcelamelo/Developer/workspace /JSONParser/src/Input/banco_filmes.json"));
-		parser.parseFileUser(new FileReader("/Users/marcelamelo/Developer/workspace /JSONParser/src/Input/banco_usuarios.json"));
+		parser.parseFileMovie(new FileReader("/Users/Avell/Desktop/JSONParser/src/Input/banco_filmes.json"));
+		parser.parseFileUser(new FileReader("/Users/Avell/Desktop/JSONParser/src/Input/banco_usuarios.json"));
 		
 		parser.testMovies();
 		parser.testUsers();
