@@ -176,14 +176,21 @@ public class Parser {
 	ad.checkActor();
 	ad.checkCountry();
 	ad.checkGenre();
-	for(int i = 0; i < ad.getCountries().size(); i++){
-		System.out.println(" - "+ad.getCountries().get(i).getName()+". Pref: "+ad.getCountries().get(i).getPreference());
+	System.out.println("Preferências");
+	System.out.println("---------------------------");
+	System.out.println("País:");
+	for(int i = 0; i < ad.getGlobCountry().size(); i++){
+		System.out.println(" - "+ad.getGlobCountry().get(i).getName()+". Pref: "+ad.getGlobCountry().get(i).getPreference());
 	}
-	for(int i = 0; i < ad.getGenres().size(); i++){
-		System.out.println(" - "+ad.getGenres().get(i).getName()+". Pref: "+ad.getGenres().get(i).getPreference());
+	System.out.println("---------------------------");
+	System.out.println("Gênero:");
+	for(int i = 0; i < ad.getGlobGenre().size(); i++){
+		System.out.println(" - "+ad.getGlobGenre().get(i).getName()+". Pref: "+ad.getGlobGenre().get(i).getPreference());
 	}
-	for(int i = 0; i < ad.getActors().size(); i++){
-		System.out.println(" - "+ad.getActors().get(i).getName()+". Pref: "+ad.getActors().get(i).getPreference());
+	System.out.println("---------------------------");
+	System.out.println("Atores:");
+	for(int i = 0; i < ad.getGlobActor().size(); i++){
+		System.out.println(" - "+ad.getGlobActor().get(i).getName()+". Pref: "+ad.getGlobActor().get(i).getPreference());
 	}
   }
   
