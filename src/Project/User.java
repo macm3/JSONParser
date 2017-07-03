@@ -10,7 +10,7 @@ public class User {
 	private List<Actor> actors;
 	private List<Genre> genres;
 	private String style;
-	
+
 	public User(String name, String age, List<Country> countries, List<Actor> actors, List<Genre> genres, String style) {
 		this.name = name;
 		this.age = age;

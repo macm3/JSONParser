@@ -4,7 +4,7 @@ public class Actor implements Comparable<Actor>{
 
 	private String name;
 	private String preference;
-	
+
 	public Actor(String name, String preference) {
 		this.name = name;
 		this.preference = preference;
@@ -25,7 +25,7 @@ public class Actor implements Comparable<Actor>{
 	public void setPreference(String preference) {
 		this.preference = preference;
 	}
-	
+
 	public int compareTo(Actor other){
 		int temp = Integer.parseInt(preference);
 		int temp2 = Integer.parseInt(other.getPreference());
@@ -36,7 +36,7 @@ public class Actor implements Comparable<Actor>{
 			return 1;
 		}
 		return 0;
-		
+
 	}
-	
+
 }

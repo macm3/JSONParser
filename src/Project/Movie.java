@@ -2,88 +2,88 @@ package Project;
 
 public class Movie {
 
-  private String title;
-  private String rated;
-  private String[] genre;
-  private String director;
-  private String[] actors;
-  private String[] countries;
-  private String rating;
-  private String boxOffice;
+	private String title;
+	private String rated;
+	private String[] genre;
+	private String director;
+	private String[] actors;
+	private String[] countries;
+	private String rating;
+	private String boxOffice;
 
-  public Movie(String title, String rated, String[] genre, String director, String[] actors, String[] countries, String rating, String boxOffice) {
-    this.title = title;
-    this.rated = rated;
-    this.genre = genre;
-    this.director = director;
-    this.actors = actors;
-    this.countries = countries;
-    this.rating = rating;
-    this.boxOffice = boxOffice;
-  }
-
-  public String getTitle() {
-	   return title;
-  }
-
-  public void setTitle(String title) {
-	   this.title = title;
+	public Movie(String title, String rated, String[] genre, String director, String[] actors, String[] countries, String rating, String boxOffice) {
+		this.title = title;
+		this.rated = rated;
+		this.genre = genre;
+		this.director = director;
+		this.actors = actors;
+		this.countries = countries;
+		this.rating = rating;
+		this.boxOffice = boxOffice;
 	}
 
-  public String getRated() {
-	   return rated;
+	public String getTitle() {
+		return title;
 	}
 
-  public void setRated(String rated) {
-	   this.rated = rated;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-  public String[] getGenre() {
-	   return genre;
+	public String getRated() {
+		return rated;
 	}
 
-  public void setGenre(String[] genre) {
-	   this.genre = genre;
-  }
+	public void setRated(String rated) {
+		this.rated = rated;
+	}
 
-  public String getDirector() {
-  	return director;
-  }
+	public String[] getGenre() {
+		return genre;
+	}
 
-  public void setDirector(String director) {
-  	this.director = director;
-  }
+	public void setGenre(String[] genre) {
+		this.genre = genre;
+	}
 
-  public String[] getActors() {
-  	return actors;
-  }
+	public String getDirector() {
+		return director;
+	}
 
-  public void setActors(String[] actors) {
-  	this.actors = actors;
-  }
+	public void setDirector(String director) {
+		this.director = director;
+	}
 
-  public String[] getCountries() {
-  	return countries;
-  }
+	public String[] getActors() {
+		return actors;
+	}
 
-  public void setCountries(String[] countries) {
-  	this.countries = countries;
-  }
+	public void setActors(String[] actors) {
+		this.actors = actors;
+	}
 
-  public String getRating() {
-  	return rating;
-  }
+	public String[] getCountries() {
+		return countries;
+	}
 
-  public void setRating(String rating) {
-  	this.rating = rating;
-  }
+	public void setCountries(String[] countries) {
+		this.countries = countries;
+	}
 
-  public String getBoxOffice() {
-  	return boxOffice;
-  }
+	public String getRating() {
+		return rating;
+	}
 
-  public void setBoxOffice(String boxOffice) {
-  	this.boxOffice = boxOffice;
-  }
-  
+	public void setRating(String rating) {
+		this.rating = rating;
+	}
+
+	public String getBoxOffice() {
+		return boxOffice;
+	}
+
+	public void setBoxOffice(String boxOffice) {
+		this.boxOffice = boxOffice;
+	}
+
 }

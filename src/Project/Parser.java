@@ -38,8 +38,8 @@ public class Parser {
 	}
 
 	public List<User> getUsers() {
-	    return this.users;
-	  }
+		return this.users;
+	}
 
 	public void processMovie(JSONObject obj) {
 		String title = (String) obj.get("Title");
@@ -57,161 +57,159 @@ public class Parser {
 		this.appendMovie(new Movie(title, rated, genre, director, actors, countries, rating, boxOffice));
 	}
 
-  public void parseFileMovie(FileReader file) throws Exception {
-    JSONParser parser = new JSONParser();
-    try {
-      JSONObject mainObj = (JSONObject) parser.parse(file);
-      JSONArray arr = (JSONArray) mainObj.get("Filmes");
-      Iterator<JSONObject> it = arr.iterator();
-      JSONObject obj;
-      while (it.hasNext()) processMovie(it.next());
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    } catch (ParseException ex) {
-      ex.printStackTrace();
-    } catch (NullPointerException ex) {
-      ex.printStackTrace();
-    }
-  }
-
-  public void testMovies() {
-	Movie movie;
-	System.out.println("Filmes\n");
-	for(int i = 0; i < movies.size(); i++) {
-		movie = movies.get(i);
-		System.out.println("Titulo: " + movie.getTitle());
-		System.out.println("IMDB rating: " + movie.getRating());
-		System.out.println("Lista de atores: ");
-		for(int j = 0; j < movie.getActors().length; j++) {
-			System.out.println(" - " + (movie.getActors())[j]);
+	public void parseFileMovie(FileReader file) throws Exception {
+		JSONParser parser = new JSONParser();
+		try {
+			JSONObject mainObj = (JSONObject) parser.parse(file);
+			JSONArray arr = (JSONArray) mainObj.get("Filmes");
+			Iterator<JSONObject> it = arr.iterator();
+			JSONObject obj;
+			while (it.hasNext()) processMovie(it.next());
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} catch (ParseException ex) {
+			ex.printStackTrace();
+		} catch (NullPointerException ex) {
+			ex.printStackTrace();
 		}
-		System.out.println("\n");
 	}
-  }
 
-  public void processUser(JSONObject obj) {
-	  String name = (String) obj.get("Name");
-	  String age = (String) obj.get("Age");
-	  String style = (String) obj.get("Style");
-	  
-	  // Parsing genres block
-	  List<Genre> genres = new ArrayList<Genre>();
-	  JSONArray GObj = (JSONArray) obj.get("Genres");
-	  String genreName, genrePref;
-	  Iterator<JSONObject> it = GObj.iterator();
-	  JSONObject currentGenre;
-	  while (it.hasNext()) {
-		  currentGenre = it.next();
-		  genreName = (String) currentGenre.get("Name");
-		  genrePref = (String) currentGenre.get("Preference");
-		  genres.add(new Genre(genreName, genrePref));
-	  }
-	  
-	  // Parsing actors block
-	  List<Actor> actors = new ArrayList<Actor>();
-	  JSONArray AObj = (JSONArray) obj.get("Actors");
-	  String actorName, actorPref;
-	  Iterator<JSONObject> it1 = AObj.iterator();
-	  JSONObject currentActor;
-	  while (it1.hasNext()) {
-		  currentActor = it1.next();
-		  actorName = (String) currentActor.get("Name");
-		  actorPref = (String) currentActor.get("Preference");
-		  actors.add(new Actor(actorName, actorPref));
-	  }
-	  
-	  // Parsing countries block
-	  List<Country> countries = new ArrayList<Country>();
-	  JSONArray CObj = (JSONArray) obj.get("Countries");
-	  String countryName, countryPref;
-	  Iterator<JSONObject> it2 = CObj.iterator();
-	  JSONObject currentCountry;
-	  while (it2.hasNext()) {
-		  currentCountry = it2.next();
-		  countryName = (String) currentCountry.get("Name");
-		  countryPref = (String) currentCountry.get("Preference");
-		  countries.add(new Country(countryName, countryPref));
-	  }
-	  
-	  this.appendUser(new User(name, age, countries, actors, genres, style));
-  }
+	public void testMovies() {
+		Movie movie;
+		System.out.println("Filmes\n");
+		for(int i = 0; i < movies.size(); i++) {
+			movie = movies.get(i);
+			System.out.println("Titulo: " + movie.getTitle());
+			System.out.println("IMDB rating: " + movie.getRating());
+			System.out.println("Lista de atores: ");
+			for(int j = 0; j < movie.getActors().length; j++) {
+				System.out.println(" - " + (movie.getActors())[j]);
+			}
+			System.out.println("\n");
+		}
+	}
 
-  public void parseFileUser(FileReader file) throws Exception {
-	JSONParser parser = new JSONParser();
-	try {
-	  JSONObject mainObj = (JSONObject) parser.parse(file);
-	  JSONArray arr = (JSONArray) mainObj.get("Users");
-	  Iterator<JSONObject> it = arr.iterator();
-	  JSONObject obj;
-	  while (it.hasNext()) processUser(it.next());
-	} catch (IOException ex) {
-	  ex.printStackTrace();
-	} catch (ParseException ex) {
-	  ex.printStackTrace();
-	} catch (NullPointerException ex) {
-	  ex.printStackTrace();
-	}
-  }
- 
-  private static void sortByPreference(List<Genre> gnrs) {
-      Collections.sort(gnrs, new GenreComparator());
-      System.out.println(gnrs.toString());
-  }
-  
-  private static void sortByPreferenceA(List<Actor> gnrs) {
-      Collections.sort(gnrs, new ActorComparator());
-      System.out.println(gnrs.toString());
-  }
-  private static void sortByPreferenceC(List<Country> gnrs) {
-      Collections.sort(gnrs, new CountryComparator());
-      System.out.println(gnrs.toString());
-  }
+	public void processUser(JSONObject obj) {
+		String name = (String) obj.get("Name");
+		String age = (String) obj.get("Age");
+		String style = (String) obj.get("Style");
 
-  public void testUsers() {
-	User user;
-	System.out.println("Usuarios:\n");
-	for(int i = 0; i < users.size(); i++) {
-		user = users.get(i);
-		System.out.println("The user "+user.getName()+", aged "+user.getAge()+" years, likes the following:");
-		System.out.println("Actors:");
-		for(int j = 0; j < user.getActors().size(); j++) {
-			System.out.println(" - "+user.getActors().get(j).getName() + ". Pref: "+user.getActors().get(j).getPreference());
+		// Parsing genres block
+		List<Genre> genres = new ArrayList<Genre>();
+		JSONArray GObj = (JSONArray) obj.get("Genres");
+		String genreName, genrePref;
+		Iterator<JSONObject> it = GObj.iterator();
+		JSONObject currentGenre;
+		while (it.hasNext()) {
+			currentGenre = it.next();
+			genreName = (String) currentGenre.get("Name");
+			genrePref = (String) currentGenre.get("Preference");
+			genres.add(new Genre(genreName, genrePref));
 		}
-		System.out.println("Countries:");
-		for(int j = 0; j < user.getCountries().size(); j++) {
-			System.out.println(" - "+user.getCountries().get(j).getName() + ". Pref: "+user.getCountries().get(j).getPreference());
+
+		// Parsing actors block
+		List<Actor> actors = new ArrayList<Actor>();
+		JSONArray AObj = (JSONArray) obj.get("Actors");
+		String actorName, actorPref;
+		Iterator<JSONObject> it1 = AObj.iterator();
+		JSONObject currentActor;
+		while (it1.hasNext()) {
+			currentActor = it1.next();
+			actorName = (String) currentActor.get("Name");
+			actorPref = (String) currentActor.get("Preference");
+			actors.add(new Actor(actorName, actorPref));
 		}
-		System.out.println("Genres:");
-		for(int j = 0; j < user.getGenres().size(); j++) {
-			System.out.println(" - "+user.getGenres().get(j).getName() + ". Pref: "+user.getGenres().get(j).getPreference());
+
+		// Parsing countries block
+		List<Country> countries = new ArrayList<Country>();
+		JSONArray CObj = (JSONArray) obj.get("Countries");
+		String countryName, countryPref;
+		Iterator<JSONObject> it2 = CObj.iterator();
+		JSONObject currentCountry;
+		while (it2.hasNext()) {
+			currentCountry = it2.next();
+			countryName = (String) currentCountry.get("Name");
+			countryPref = (String) currentCountry.get("Preference");
+			countries.add(new Country(countryName, countryPref));
 		}
-		System.out.println("\n");
+
+		this.appendUser(new User(name, age, countries, actors, genres, style));
 	}
-	Advisor ad = new Advisor(users);
-	ad.checkActor();
-	ad.checkCountry();
-	ad.checkGenre();
-	Parser.sortByPreference(ad.getGlobGenre());
-	Parser.sortByPreferenceC(ad.getGlobCountry());
-	Parser.sortByPreferenceA(ad.getGlobActor());
-	System.out.println("Preferências");
-	System.out.println("---------------------------");
-	System.out.println("País:");
-	for(int i = 0; i < ad.getGlobCountry().size(); i++){
-		System.out.println(" - "+ad.getGlobCountry().get(i).getName()+". Pref: "+ad.getGlobCountry().get(i).getPreference());
+
+	public void parseFileUser(FileReader file) throws Exception {
+		JSONParser parser = new JSONParser();
+		try {
+			JSONObject mainObj = (JSONObject) parser.parse(file);
+			JSONArray arr = (JSONArray) mainObj.get("Users");
+			Iterator<JSONObject> it = arr.iterator();
+			JSONObject obj;
+			while (it.hasNext()) processUser(it.next());
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} catch (ParseException ex) {
+			ex.printStackTrace();
+		} catch (NullPointerException ex) {
+			ex.printStackTrace();
+		}
 	}
-	System.out.println("---------------------------");
-	System.out.println("Gênero:");
-	for(int i = 0; i < ad.getGlobGenre().size(); i++){
-		System.out.println(" - "+ad.getGlobGenre().get(i).getName()+". Pref: "+ad.getGlobGenre().get(i).getPreference());
+
+	private static void sortByPreference(List<Genre> gnrs) {
+		Collections.sort(gnrs, new GenreComparator());
 	}
-	System.out.println("---------------------------");
-	System.out.println("Atores:");
-	for(int i = 0; i < ad.getGlobActor().size(); i++){
-		System.out.println(" - "+ad.getGlobActor().get(i).getName()+". Pref: "+ad.getGlobActor().get(i).getPreference());
+
+	private static void sortByPreferenceA(List<Actor> gnrs) {
+		Collections.sort(gnrs, new ActorComparator());
 	}
-  }
-  
-  
-  
+	private static void sortByPreferenceC(List<Country> gnrs) {
+		Collections.sort(gnrs, new CountryComparator());
+	}
+
+	public void testUsers() {
+		User user;
+		System.out.println("Usuarios:\n");
+		for(int i = 0; i < users.size(); i++) {
+			user = users.get(i);
+			System.out.println("The user "+user.getName()+", aged "+user.getAge()+" years, likes the following:");
+			System.out.println("Actors:");
+			for(int j = 0; j < user.getActors().size(); j++) {
+				System.out.println(" - "+user.getActors().get(j).getName() + ". Pref: "+user.getActors().get(j).getPreference());
+			}
+			System.out.println("Countries:");
+			for(int j = 0; j < user.getCountries().size(); j++) {
+				System.out.println(" - "+user.getCountries().get(j).getName() + ". Pref: "+user.getCountries().get(j).getPreference());
+			}
+			System.out.println("Genres:");
+			for(int j = 0; j < user.getGenres().size(); j++) {
+				System.out.println(" - "+user.getGenres().get(j).getName() + ". Pref: "+user.getGenres().get(j).getPreference());
+			}
+			System.out.println("\n");
+		}
+		Advisor ad = new Advisor(users,movies);
+		ad.checkActor();
+		ad.checkCountry();
+		ad.checkGenre();
+		Parser.sortByPreference(ad.getGlobGenre());
+		Parser.sortByPreferenceC(ad.getGlobCountry());
+		Parser.sortByPreferenceA(ad.getGlobActor());
+		System.out.println("Preferências");
+		System.out.println("---------------------------");
+		System.out.println("País:");
+		for(int i = 0; i < ad.getGlobCountry().size(); i++){
+			System.out.println(" - "+ad.getGlobCountry().get(i).getName()+". Pref: "+ad.getGlobCountry().get(i).getPreference());
+		}
+		System.out.println("---------------------------");
+		System.out.println("Gênero:");
+		for(int i = 0; i < ad.getGlobGenre().size(); i++){
+			System.out.println(" - "+ad.getGlobGenre().get(i).getName()+". Pref: "+ad.getGlobGenre().get(i).getPreference());
+		}
+		System.out.println("---------------------------");
+		System.out.println("Atores:");
+		for(int i = 0; i < ad.getGlobActor().size(); i++){
+			System.out.println(" - "+ad.getGlobActor().get(i).getName()+". Pref: "+ad.getGlobActor().get(i).getPreference());
+		}
+		ad.recomendar();
+	}
+
+
+
 }

@@ -8,7 +8,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Advisor {
-	
+
 	private List<Country> countries;
 	private List<Country> globCountry = new ArrayList<Country>();
 	private List<Actor> actors;
@@ -16,17 +16,108 @@ public class Advisor {
 	private List<Genre> genres;
 	private List<Genre> globGenre = new ArrayList<Genre>();
 	private List<User> users;
-	
-	public Advisor(List<User> users) {
+	private List<Movie> movies;
+	private List<Movie> recomendados = new ArrayList<Movie>();
+
+	public Advisor(List<User> users, List<Movie> movies) {
 		this.users = users;
+		this.movies = movies;
 	}
-	
+
+	public void printActor(){
+		System.out.println(globActor.get(getGlobActor().size()-1).getName());
+
+	}
+
+	public int[] ordena(int[] vetor){
+		int[] indices = new int[vetor.length];
+		for(int i = 0 ; i < vetor.length ; i++){
+			indices[i] = i;
+		}
+		int aux;
+		int auxInd;
+
+		for(int i = 0; i < vetor.length - 1 ; i++){	
+			for(int j = 0 ; j < vetor.length-1; j++){
+				if(vetor[j] > vetor[j+1]){
+					aux = vetor[j];
+					vetor[j] = vetor[j+1];
+					vetor[j+1]= aux;
+					auxInd = indices[j];
+					indices[j] = indices[j+1];
+					indices[j+1]= auxInd;
+				}
+			}
+		}
+
+		return indices; 
+	}
+
+
+
+	public void recomendar(){
+		String prioridadeA = globActor.get(getGlobActor().size()-1).getName();
+		String prioridadeG = globGenre.get(getGlobGenre().size()-1).getName();
+		String prioridadeC = globCountry.get(getGlobCountry().size()-1).getName();
+		int prio = 0;
+		int[] pri = new int[movies.size()];
+		//while(recomendados.size() < 5) {
+		for(int i = 0; i < movies.size(); i++){
+
+			for(int j = 0; j < movies.get(i).getActors().length; j++){
+				if(this.movies.get(i).getActors()[j].equals(prioridadeA)){
+					prio++; 
+				}
+			}
+
+			for(int k = 0; k < this.movies.get(i).getGenre().length; k++){
+				if(this.movies.get(i).getGenre()[k].equals(prioridadeG)){
+					prio++;
+				}						
+			}
+
+			for(int l = 0; l < this.movies.get(i).getCountries().length; l++){
+				if(this.movies.get(i).getCountries()[l].equals(prioridadeC)){
+					prio++;
+				}						
+			}
+			pri[i] = prio;
+			prio = 0;
+		}
+		pri = this.ordena(pri);
+		int temp = 1;
+		System.out.println("");
+		System.out.println("Lista de filmes recomendados:\n");
+		for(int i = pri.length-1; i >= 0; i--){
+			System.out.println("------------"+temp+"------------");
+			System.out.println("Titulo: "+this.movies.get(pri[i]).getTitle());
+			System.out.println("Diretor: "+this.movies.get(pri[i]).getDirector());
+			System.out.print("Gêneros: ");
+			for(int k = 0; k < this.movies.get(pri[i]).getGenre().length; k++){
+				System.out.print(this.movies.get(pri[i]).getGenre()[k] + ";");
+			}
+			System.out.println();
+			System.out.print("Atores: ");
+			for(int m = 0; m < this.movies.get(pri[i]).getActors().length; m++){
+				System.out.print(this.movies.get(pri[i]).getActors()[m] + ";");
+			}
+			System.out.println("");
+			System.out.print("Países: ");
+			for(int m = 0; m < this.movies.get(pri[i]).getCountries().length; m++){
+			System.out.print(this.movies.get(pri[i]).getCountries()[m] + ";");
+			}
+			System.out.println();
+			temp++;
+		}	
+
+	}
+
 	public void addGlobActor(){
 		for(int k = 0; k < users.size(); k++){
 			this.globActor.addAll(users.get(k).getActors());
 		}
 	}
-	
+
 	public void checkActor(){
 		addGlobActor();
 		for(int i = 0; i < users.size(); i++){	
@@ -55,13 +146,13 @@ public class Advisor {
 		}
 		globActor.removeAll(listaEliminarA);		
 	}
-	
+
 	public void addGlobGenre(){
 		for(int k = 0; k < users.size(); k++){
 			this.globGenre.addAll(users.get(k).getGenres());
 		}
 	}
-	
+
 	public void checkGenre(){
 		addGlobGenre();
 		for(int i = 0; i < users.size(); i++){		
@@ -90,13 +181,13 @@ public class Advisor {
 		}
 		globGenre.removeAll(listaEliminarG);		
 	}
-	
+
 	public void addGlobCountry(){
 		for(int k = 0; k < users.size(); k++){
 			this.globCountry.addAll(users.get(k).getCountries());
 		}
 	}
-	
+
 	public void checkCountry(){
 		addGlobCountry();
 		for(int i = 0; i < users.size(); i++){		
@@ -124,8 +215,8 @@ public class Advisor {
 		}
 		globCountry.removeAll(listaEliminar);		
 	}
-	
-	
+
+
 	public List<Country> getCountries() {
 		return countries;
 	}
@@ -174,6 +265,13 @@ public class Advisor {
 		this.globGenre = globGenre;
 	}
 
+	public List<Movie> getMovies() {
+		return movies;
+	}
 
-	
+	public void setMovies(List<Movie> movies) {
+		this.movies = movies;
+	}
+
+
 }

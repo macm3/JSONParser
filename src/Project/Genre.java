@@ -5,7 +5,7 @@ public class Genre implements Comparable<Genre> {
 
 	private String name;
 	private String preference;
-	
+
 	public Genre(String name, String preference)  {
 		this.name = name;
 		this.preference = preference;
@@ -26,7 +26,7 @@ public class Genre implements Comparable<Genre> {
 	public void setPreference(String preference) {
 		this.preference = preference;
 	}
-	
+
 	public int compareTo(Genre other){
 		int temp = Integer.parseInt(preference);
 		int temp2 = Integer.parseInt(other.getPreference());
@@ -37,6 +37,6 @@ public class Genre implements Comparable<Genre> {
 			return 1;
 		}
 		return 0;
-		
+
 	}
 }

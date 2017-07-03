@@ -1,10 +1,10 @@
 package Project;
 
 public class Country {
-	
+
 	private String name;
 	private String preference;
-	
+
 	public Country(String name, String preference) {
 		this.name = name;
 		this.preference = preference;
@@ -25,7 +25,7 @@ public class Country {
 	public void setPreference(String preference) {
 		this.preference = preference;
 	}
-	
+
 	public int compareTo(Country other){
 		int temp = Integer.parseInt(preference);
 		int temp2 = Integer.parseInt(other.getPreference());
@@ -36,6 +36,6 @@ public class Country {
 			return 1;
 		}
 		return 0;
-		
+
 	}
 }
