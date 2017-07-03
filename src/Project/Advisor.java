@@ -9,54 +9,6 @@ import org.json.simple.JSONObject;
 
 public class Advisor {
 	
-	public List<Country> getCountries() {
-		return countries;
-	}
-
-	public void setCountries(List<Country> countries) {
-		this.countries = countries;
-	}
-
-	public List<Actor> getActors() {
-		return actors;
-	}
-
-	public void setActors(List<Actor> actors) {
-		this.actors = actors;
-	}
-
-	public List<Genre> getGenres() {
-		return genres;
-	}
-
-	public void setGenres(List<Genre> genres) {
-		this.genres = genres;
-	}
-
-	public List<Country> getGlobCountry() {
-		return globCountry;
-	}
-
-	public void setGlobCountry(List<Country> globCountry) {
-		this.globCountry = globCountry;
-	}
-
-	public List<Actor> getGlobActor() {
-		return globActor;
-	}
-
-	public void setGlobActor(List<Actor> globActor) {
-		this.globActor = globActor;
-	}
-
-	public List<Genre> getGlobGenre() {
-		return globGenre;
-	}
-
-	public void setGlobGenre(List<Genre> globGenre) {
-		this.globGenre = globGenre;
-	}
-
 	private List<Country> countries;
 	private List<Country> globCountry = new ArrayList<Country>();
 	private List<Actor> actors;
@@ -173,6 +125,55 @@ public class Advisor {
 		globCountry.removeAll(listaEliminar);		
 	}
 	
+	
+	public List<Country> getCountries() {
+		return countries;
+	}
+
+	public void setCountries(List<Country> countries) {
+		this.countries = countries;
+	}
+
+	public List<Actor> getActors() {
+		return actors;
+	}
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
+
+	public List<Genre> getGenres() {
+		return genres;
+	}
+
+	public void setGenres(List<Genre> genres) {
+		this.genres = genres;
+	}
+
+	public List<Country> getGlobCountry() {
+		return globCountry;
+	}
+
+	public void setGlobCountry(List<Country> globCountry) {
+		this.globCountry = globCountry;
+	}
+
+	public List<Actor> getGlobActor() {
+		return globActor;
+	}
+
+	public void setGlobActor(List<Actor> globActor) {
+		this.globActor = globActor;
+	}
+
+	public List<Genre> getGlobGenre() {
+		return globGenre;
+	}
+
+	public void setGlobGenre(List<Genre> globGenre) {
+		this.globGenre = globGenre;
+	}
+
 
 	
 }

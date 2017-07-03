@@ -10,6 +10,7 @@ import org.json.simple.parser.ParseException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Parser {
 
@@ -151,6 +152,20 @@ public class Parser {
 	  ex.printStackTrace();
 	}
   }
+ 
+  private static void sortByPreference(List<Genre> gnrs) {
+      Collections.sort(gnrs, new GenreComparator());
+      System.out.println(gnrs.toString());
+  }
+  
+  private static void sortByPreferenceA(List<Actor> gnrs) {
+      Collections.sort(gnrs, new ActorComparator());
+      System.out.println(gnrs.toString());
+  }
+  private static void sortByPreferenceC(List<Country> gnrs) {
+      Collections.sort(gnrs, new CountryComparator());
+      System.out.println(gnrs.toString());
+  }
 
   public void testUsers() {
 	User user;
@@ -176,6 +191,9 @@ public class Parser {
 	ad.checkActor();
 	ad.checkCountry();
 	ad.checkGenre();
+	Parser.sortByPreference(ad.getGlobGenre());
+	Parser.sortByPreferenceC(ad.getGlobCountry());
+	Parser.sortByPreferenceA(ad.getGlobActor());
 	System.out.println("Preferências");
 	System.out.println("---------------------------");
 	System.out.println("País:");
@@ -193,5 +211,7 @@ public class Parser {
 		System.out.println(" - "+ad.getGlobActor().get(i).getName()+". Pref: "+ad.getGlobActor().get(i).getPreference());
 	}
   }
+  
+  
   
 }

@@ -1,11 +1,12 @@
 package Project;
-
-public class Genre {
+import java.lang.Comparable;
+import java.util.ArrayList;
+public class Genre implements Comparable<Genre> {
 
 	private String name;
 	private String preference;
 	
-	public Genre(String name, String preference) {
+	public Genre(String name, String preference)  {
 		this.name = name;
 		this.preference = preference;
 	}
@@ -26,4 +27,16 @@ public class Genre {
 		this.preference = preference;
 	}
 	
+	public int compareTo(Genre other){
+		int temp = Integer.parseInt(preference);
+		int temp2 = Integer.parseInt(other.getPreference());
+		if(temp > temp2){
+			return -1;
+		}
+		if( temp < temp2){
+			return 1;
+		}
+		return 0;
+		
+	}
 }

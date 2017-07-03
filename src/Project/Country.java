@@ -26,4 +26,16 @@ public class Country {
 		this.preference = preference;
 	}
 	
+	public int compareTo(Country other){
+		int temp = Integer.parseInt(preference);
+		int temp2 = Integer.parseInt(other.getPreference());
+		if(temp > temp2){
+			return -1;
+		}
+		if( temp < temp2){
+			return 1;
+		}
+		return 0;
+		
+	}
 }
